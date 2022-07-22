@@ -6,31 +6,59 @@
 /*   By: abeaudui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 11:40:18 by abeaudui          #+#    #+#             */
-/*   Updated: 2022/07/22 11:40:48 by abeaudui         ###   ########.fr       */
+/*   Updated: 2022/07/22 13:11:52 by abeaudui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int	main(int argc, char *argv[])
+int ft_strlen(char *str)
 {
-	int i = 0;
-	int j = 0;
-	
-	if (argc != 3)
-		write (1,"\n",1);
-	while (argv[1][i] != '\0')
-	{
-		while (argv[2][j] != argv[1][i] && argv[2][j] != '\0')
-			j++;
-		if (argv[2][j] == '\0')
+    int i;
+
+    i = 0;
+    while (str[i])
+        i++;
+    return(i);
+}
+
+void    ft_putstr(char *str)
+{
+    int i;
+
+    i = 0;
+    while (str[i])
+    {
+        write(1, &str[i] ,1);
+        i++;
+    }
+}
+int main(int ac, char **av)
+{
+	int i;
+	int j;
+	int a;
+
+	i = 0;
+	j = 0;
+	a = 0;
+
+	if ( ac == 3)
+		while(av[1][i])
 		{
-			write (1,"\n",1);
-			return (0);
-		}
+			while(av[2][j])
+			{	
+				if(av[1][i] == av[2][j])
+				{
+					a++;
+					break;
+				}
+			j++;
+			}
 		i++;
-		j++;
-	}
-	write(1, argv[1], i);
-	return (0);
+		}
+	if (a == ft_strlen(av[1]))
+		ft_putstr(av[1]);
+	else	
+		write(1, "\n", 1);
 }

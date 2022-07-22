@@ -8,7 +8,7 @@ int ft_atoi(char *str)
 	res = 0;
 	signe = 1;
 	boite = 0;
-	while(str[i] == ' ' || (str[i] >= 9 && str[i] <= 13) || str[i] == '\n')
+	while(str[i] == ' ' || (str[i] >= 9 && str[i] <= 13) || str[i])
 		i++;
 	while(str[i] == '-' || str[i] == '+')
 	{
@@ -17,6 +17,7 @@ int ft_atoi(char *str)
 			signe = signe * -1;
 		if(boite == 2)
 			return (0);
+		i++;
 	}
 	while(str[i] >= '0' && str[i] <= '9')
 	{
